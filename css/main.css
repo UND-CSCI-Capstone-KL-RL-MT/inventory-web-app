@@ -1,0 +1,115 @@
+/* Color Palette */
+/* Mixins */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700,700italic,400italic,300italic);
+/* line 66, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+* {
+  margin: 0; }
+
+/* line 70, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+body, html {
+  height: 100%; }
+
+/* line 74, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+.container {
+  position: relative;
+  height: 100%;
+  min-height: 100%; }
+  /* line 79, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+  .container header {
+    display: block;
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    background-color: #3F51B5;
+    padding: 30px 15px 30px 15px;
+    font-family: "Roboto", sans-serif;
+    color: #E8EAF6;
+    -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    *zoom: 1;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out; }
+    /* line 93, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+    .container header:before, .container header:after {
+      content: '';
+      display: table; }
+    /* line 98, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+    .container header:after {
+      clear: both; }
+    /* line 102, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+    .container header .headerContent {
+      display: block;
+      width: 100%;
+      margin-top: 4px;
+      margin-left: 8px;
+      font-size: 24px; }
+      @media (max-width: 1030px) {
+        /* line 102, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+        .container header .headerContent {
+          font-size: 18px; } }
+      @media (max-width: 480px) {
+        /* line 102, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+        .container header .headerContent {
+          font-size: 16px; } }
+    /* line 112, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+    .container header #menu {
+      position: relative;
+      display: block;
+      float: left;
+      width: 30px;
+      height: 30px;
+      background: transparent;
+      border: none;
+      display: none; }
+      @media (max-width: 1030px) {
+        /* line 112, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+        .container header #menu {
+          display: block; } }
+      /* line 123, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+      .container header #menu span {
+        position: relative;
+        display: block;
+        width: 15px;
+        height: 2px;
+        background-color: #E8EAF6;
+        margin: 0 auto; }
+        /* line 131, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+        .container header #menu span:before {
+          position: absolute;
+          display: block;
+          content: '';
+          width: 15px;
+          height: 2px;
+          background-color: #E8EAF6;
+          bottom: 5px; }
+        /* line 141, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+        .container header #menu span:after {
+          position: absolute;
+          display: block;
+          content: '';
+          width: 15px;
+          height: 2px;
+          background-color: #E8EAF6;
+          top: 5px; }
+        /* line 151, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+        .container header #menu span:focus {
+          outline: none; }
+  /* line 158, C:/Users/Ben/Documents/Senior Project Repos/inventory-web-app/css/main.scss */
+  .container nav {
+    display: block;
+    background-color: #F5F5F5;
+    width: 100px;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0; }
+
+/*# sourceMappingURL=main.css.map */
