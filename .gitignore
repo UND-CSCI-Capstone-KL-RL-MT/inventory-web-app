@@ -3,3 +3,6 @@
 ./css/*.scss
 ./css/*.css.map
 ./sass-cache
+*.brackets.json
+.brackets.json
+brackets.json
