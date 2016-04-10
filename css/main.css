@@ -64,7 +64,8 @@ body, html {
       height: 30px;
       background: transparent;
       border: none;
-      display: none; }
+      display: none;
+      cursor: pointer; }
       @media (max-width: 1030px) {
         .container header #menu {
           display: block; } }
