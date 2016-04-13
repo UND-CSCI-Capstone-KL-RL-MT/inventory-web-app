@@ -130,7 +130,7 @@ body, html {
         outline: none; }
   .container nav {
     display: block;
-    background-color: #F5F5F5;
+    background-color: #FFFFFF;
     width: 250px;
     height: 100%;
     position: fixed;
@@ -234,5 +234,15 @@ body, html {
       .container .appContent {
         margin-left: 0;
         width: 100%; } }
+    .container .appContent h1 {
+      font-family: "Roboto", sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #3F51B5;
+      margin-bottom: 25px; }
+      @media (max-width: 800px) {
+        .container .appContent h1 {
+          font-size: 18px;
+          margin-bottom: 20px; } }
 
 /*# sourceMappingURL=main.css.map */
