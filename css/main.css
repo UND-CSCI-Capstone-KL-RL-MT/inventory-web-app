@@ -8,6 +8,42 @@ body, html {
   height: 100%;
   -webkit-font-smoothing: antialiased; }
 
+/* The starting CSS styles for the enter animation */
+.fade.ng-enter {
+  -webkit-transition: 200ms linear all;
+  -moz-transition: 200ms linear all;
+  -ms-transition: 200ms linear all;
+  -o-transition: 200ms linear all;
+  transition: 200ms linear all;
+  -moz-opacity: 0;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+
+/* The finishing CSS styles for the enter animation */
+.fade.ng-enter.ng-enter-active {
+  -webkit-transition-delay: 300ms;
+  -moz-transition-delay: 300ms;
+  transition-delay: 300ms;
+  -moz-opacity: 1;
+  opacity: 1;
+  filter: alpha(opacity=100); }
+
+/* now the element will fade out before it is removed from the DOM */
+.fade.ng-leave {
+  -webkit-transition: 200ms linear all;
+  -moz-transition: 200ms linear all;
+  -ms-transition: 200ms linear all;
+  -o-transition: 200ms linear all;
+  transition: 200ms linear all;
+  -moz-opacity: 1;
+  opacity: 1;
+  filter: alpha(opacity=100); }
+
+.fade.ng-leave.ng-leave-active {
+  -moz-opacity: 0;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+
 .container {
   position: relative;
   width: 100%;
@@ -234,6 +270,15 @@ body, html {
       .container .appContent {
         margin-left: 0;
         width: 100%; } }
+    .container .appContent md-input-container {
+      margin-bottom: 0; }
+    .container .appContent md-content.form {
+      margin-top: 15px; }
+      .container .appContent md-content.form .width-45 {
+        width: 47.5%; }
+      .container .appContent md-content.form .width-100 {
+        display: block;
+        width: 96%; }
     .container .appContent h1 {
       font-family: "Roboto", sans-serif;
       font-size: 24px;
