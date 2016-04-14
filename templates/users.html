@@ -25,7 +25,10 @@
 				<div ng-message-exp="['required', 'pattern']">Must be a valid email address.</div>
 			</div>
 		</md-input-container>
-		<md-button class="md-accent md-raised">Add User</md-button>
+		<md-switch ng-model="newUser.isAdmin" ng-true-value="1" ng-false-value="0">
+			Administrator
+		</md-switch>
+		<md-button class="md-primary md-raised">Add User</md-button>
 		<md-button class="md-raised" ng-click="resetForm()">Reset</md-button>
 	</form>
 </md-content>
