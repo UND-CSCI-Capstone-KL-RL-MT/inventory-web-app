@@ -45,12 +45,13 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			});
 	}
 	
-	$scope.showAddDialog = function() {
+	$scope.showAddDialog = function(ev) {
 		var useFullScreen = $mdMedia('xs');
 		$mdDialog.show({
 			controller: 'AddUserDialog',
 			templateUrl: './templates/dialogs/add_user.html',
 			parent: angular.element(document.body),
+			targetEvent: ev,
 			clickOutsideToClose: true,
 			fullscreen: useFullScreen
 		})
