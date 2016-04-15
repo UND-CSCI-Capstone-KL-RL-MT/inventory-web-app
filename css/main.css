@@ -272,11 +272,11 @@ body, html {
         width: 100%; } }
     .container .appContent md-input-container {
       margin-bottom: 0; }
-    .container .appContent md-content.form {
+    .container .appContent .form {
       margin-top: 15px; }
-      .container .appContent md-content.form .width-45 {
+      .container .appContent .form .width-45 {
         width: 47.5%; }
-      .container .appContent md-content.form .width-100 {
+      .container .appContent .form .width-100 {
         display: block;
         width: 96%; }
     .container .appContent h1 {

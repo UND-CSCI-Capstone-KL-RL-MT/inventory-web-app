@@ -1,6 +1,6 @@
 <h1>Manage users.</h1>
 <p>Use the form below to add new users to the system. To remove a user from the system, simply press the "remove" button to the left of their information. When a user is added to the system, they will get an email with a link and generated password. Upon sign in, they will be required to change their password.</p>
-<md-content class="form md-inline-form">
+<div class="form md-inline-form">
 	<form name="newUserForm">
 		<md-input-container class="width-100">
 			<label>First Name</label>
@@ -25,7 +25,8 @@
 				<div ng-message-exp="['required', 'pattern']">Must be a valid email address.</div>
 			</div>
 		</md-input-container>
+		<md-switch class="md-primary" ng-true-value="1" ng-false-value="0">Administrator</md-switch>
 		<md-button class="md-accent md-raised">Add User</md-button>
 		<md-button class="md-raised" ng-click="resetForm()">Reset</md-button>
 	</form>
-</md-content>
+</div>
