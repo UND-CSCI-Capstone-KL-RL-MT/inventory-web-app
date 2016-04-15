@@ -30,6 +30,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 	
 	$scope.users = [];
 	$scope.newUser = {first_name: '', last_name: '', email: '', isAdmin: 0};
+	$scope.getUsers();
 	
 	$scope.getUsers = function() {
 		UsersService.getUsers()
