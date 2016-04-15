@@ -2,7 +2,7 @@
 <p>Below is a list of users within the system. To manage a user, simply click on their name and update their information.</p>
 <div class="users-list">
 	<md-list>
-        <md-list-item class="md-2-line" ng-repeat="user in users" ng-click="showUpdateDialog(user)">
+        <md-list-item class="md-2-line" ng-repeat="user in users | orderBy: firstName" ng-click="showUpdateDialog(user)">
          <img ng-src="{{ (user.is_admin == 1) ? 'images/contact-icon-pink.png' : 'images/contact-icon-indigo.png' }}" class="md-avatar" alt="{{ user.first_name }}" />
           <div class="md-list-item-text">
             <h3>{{ user.first_name }} {{ user.last_name }}</h3>
