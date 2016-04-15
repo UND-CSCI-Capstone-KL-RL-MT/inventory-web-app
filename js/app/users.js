@@ -82,6 +82,23 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			});
 	};
 	
+	$scope.showUpdateDialog = function(ev) {
+		var useFullScreen = $mdMedia('xs');
+		$mdDialog.show({
+			controller: 'UpdateUserDialog',
+			templateUrl: './templates/dialogs/update_user.html',
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			clickOutsideToClose: true,
+			fullscreen: useFullScreen
+		})
+			.then(function(result) {
+				// success
+			}, function() {
+				// fail
+			})
+	};
+	
 	$scope.getUsers();
 	
 });
