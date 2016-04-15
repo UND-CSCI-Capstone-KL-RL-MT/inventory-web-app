@@ -34,7 +34,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 	$scope.getUsers = function() {
 		UsersService.getUsers()
 			.then(function(res) {
-				$scope.users = res.data;
+				$scope.users = res;
 			}, function() {
 				$mdToast.show(
 					$mdToast.simple()
