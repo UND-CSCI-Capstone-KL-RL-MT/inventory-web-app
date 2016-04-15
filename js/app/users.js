@@ -26,7 +26,7 @@ app.factory('UsersService', function($http) {
 	
 });
 
-app.controller('Users', function($rootScope, $scope, $timeout, UsersService) {
+app.controller('Users', function($rootScope, $scope, $mdToast, $timeout, UsersService) {
 	
 	$scope.users = [];
 	$scope.newUser = {first_name: '', last_name: '', email: '', isAdmin: 0};
