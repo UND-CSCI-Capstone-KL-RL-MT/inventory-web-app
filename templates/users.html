@@ -26,7 +26,7 @@
 			</div>
 		</md-input-container>
 		<md-switch class="md-primary" ng-true-value="1" ng-false-value="0">Administrator</md-switch>
-		<md-button class="md-accent md-raised">Add User</md-button>
+		<md-button class="md-primary md-raised" ng-click="newUserForm.$valid && addUser()">Add User</md-button>
 		<md-button class="md-raised" ng-click="resetForm()">Reset</md-button>
 	</form>
 </div>
