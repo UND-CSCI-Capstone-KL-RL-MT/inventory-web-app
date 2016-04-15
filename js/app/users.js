@@ -26,30 +26,50 @@ app.factory('UsersService', function($http) {
 	
 });
 
-app.controller('Users', function($rootScope, $scope, $mdToast, $timeout, UsersService) {
+app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDialog, $timeout, UsersService) {
 	
 	$scope.users = [];
 	$scope.newUser = {first_name: '', last_name: '', email: '', isAdmin: 0};
 	
-	$scope.resetForm = function() {
-		$scope.newUser = {first_name: '', last_name: '', email: '', isAdmin: 0};
-		$scope.newUserForm.$setPristine();
-		$scope.newUserForm.$setUntouched();
-	};
-	
-	$scope.addUser = function() {
-		UsersService.addUser($scope.newUser)
+	$scope.getUsers = function() {
+		UsersService.getUsers()
 			.then(function(res) {
-				if (res.result == "success") {
+				$scope.users = res.data;
+			}, function() {
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent('Unable to fetch users. Please refresh and try again.')
+						.position('bottom right')
+						.hideDelay(3000)
+				);
+			});
+	}
+	
+	$scope.showAddDialog = function() {
+		var useFullScreen = $mdMedia('xs');
+		$mdDialog.show({
+			controller: 'AddUserDialog',
+			templateUrl: './templates/dialogs/add_user.html',
+			parent: angular.element(document.body),
+			clickOutsideToClose: true,
+			fullscreen: useFullScreen
+		})
+			.then(function(result) {
+				if (result == "success") {
 					$mdToast.show(
 						$mdToast.simple()
 							.textContent('User was added to the system.')
 							.position('bottom right')
 							.hideDelay(3000)
 					);
-					$scope.newUser = {first_name: '', last_name: '', email: '', isAdmin: 0};
-					$scope.newUserForm.$setPristine();
-					$scope.newUserForm.$setUntouched();
+					$scope.getUsers();
+				} else if (result == "conn-error") {
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent('Could not add user to system. Please refresh and try again.')
+							.position('bottom right')
+							.hideDelay(3000)
+					);
 				} else {
 					$mdToast.show(
 						$mdToast.simple()
@@ -58,14 +78,38 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $timeout, UsersSe
 							.hideDelay(3000)
 					);
 				}
-			}, function(res) {
-				$mdToast.show(
-					$mdToast.simple()
-						.textContent('Could not add user to system. Please refresh and try again.')
-						.position('bottom right')
-						.hideDelay(3000)
-				);
+			}, function() {
 			});
+	};
+	
+});
+
+app.controller('AddUserDialog', function($rootScope, $scope, $mdDialog, $timeout, UsersService) {
+	
+	$scope.addUser = function() {
+		UsersService.addUser($scope.newUser)
+			.then(function(res) {
+				if (res.result == "success") {
+					$mdDialog.hide('success');
+					$scope.newUser = {first_name: '', last_name: '', email: '', is_admin: 0};
+					$scope.newUserForm.$setPristine();
+					$scope.newUserForm.$setUntouched();
+				} else {
+					$mdDialog.hide('validation-error');
+				}
+			}, function(res) {
+				$mdDialog.hide('conn-error');
+			});
+	};
+	
+	$scope.resetForm = function() {
+		$scope.newUser = {first_name: '', last_name: '', email: '', is_admin: 0};
+		$scope.newUserForm.$setPristine();
+		$scope.newUserForm.$setUntouched();
+	};
+	
+	$scope.cancel = function() {
+		$mdDialog.cancel();
 	};
 	
 });
