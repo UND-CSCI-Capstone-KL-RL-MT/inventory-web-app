@@ -60,7 +60,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: true,
-			fullscreen: useFullScreen
+			/* fullscreen: useFullScreen */
 		})
 			.then(function(result) {
 				if (result == "success") {
@@ -98,8 +98,8 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			parent: angular.element(document.body),
 			/* targetEvent: ev, */
 			clickOutsideToClose: true,
-			fullscreen: useFullScreen,
-			locals: {user: user}
+			/* fullscreen: useFullScreen, */
+			locals: {user: angular.copy(user)}
 		})
 			.then(function(result) {
 				// success
