@@ -16,7 +16,7 @@
 					<md-input-container class="width-100">
 						<label>First Name</label>
 						<input required name="firstname" maxlength="40" ng-model="user.first_name" />
-						<div ng-messages="newUserForm.firstname.$error" role="alert">
+						<div ng-messages="updateUserForm.firstname.$error" role="alert">
 							<div ng-message="maxlength">Wow, that's a long name! First name must be less than 40 characters.</div>
 							<div ng-message="required">A first name is required.</div>
 						</div>
@@ -24,7 +24,7 @@
 					<md-input-container class="width-100">
 						<label>Last Name</label>
 						<input required name="lastname" maxlength="40" ng-model="user.last_name" />
-						<div ng-messages="newUserForm.lastname.$error" role="alert">
+						<div ng-messages="updateUserForm.lastname.$error" role="alert">
 							<div ng-message="maxlength">Wow, that's a long name! Last name must be less than 40 characters.</div>
 							<div ng-message="required">A last name is required.</div>
 						</div>
@@ -32,7 +32,7 @@
 					<md-input-container class="width-100">
 						<label>Email</label>
 						<input required name="email" ng-model="user.email" minlength="10" maxlength="255" ng-pattern="/^.+@.+\..+$/" />
-						<div ng-messages="newUserForm.email.$error" role="alert">
+						<div ng-messages="updateUserForm.email.$error" role="alert">
 							<div ng-message-exp="['required', 'pattern']">Must be a valid email address.</div>
 						</div>
 					</md-input-container>
