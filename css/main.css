@@ -272,10 +272,9 @@ body, html {
       .container .appContent {
         margin-left: 0;
         width: 100%; } }
-
-@inlude breakpoint(small) {
-  .container .appContent {
-    padding: 20px; } }
+    @media (max-width: 480px) {
+      .container .appContent {
+        padding: 20px; } }
     .container .appContent md-input-container {
       margin-bottom: 0; }
     .container .appContent .form {

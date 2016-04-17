@@ -146,6 +146,7 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $time
 	
 	$scope.user = user;
 	$scope.og_user = angular.copy(user);
+	$scope.user.email = $scope.user.username;
 	
 	$scope.updateUser = function() {
 		UsersService.updateUser($scope.user)
