@@ -27,6 +27,13 @@ app.factory('UsersService', function ($http) {
 				.then(function(res) {
 					return res.data;
 				})
+		},
+		
+		removeUser: function(user) {
+			return $http.post('../inventory-api/remove_user.php', user)
+				.then(function(res) {
+					return res.data;
+				})
 		}
 		
 	}
@@ -167,6 +174,45 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $time
 		$scope.updateUserForm.$setPristine();
 		$scope.updateUserForm.$setUntouched();
 	};
+	
+	$scope.confirmRemove = function(user) {
+		var confirm = $mdDialog.confirm()
+			.title("Are you sure you'd like to delete " + user.first_name + " " user.last_name + "?");
+			.ariaLabel("Really remove user?")
+			.ok('Yes, delete this user')
+			.cancel('No');
+		
+		$mdDialog.show(confirm).then(function() {
+			$scope.removeUser(user);
+		}, function() {
+		var useFullScreen = $mdMedia('xs');
+			$mdDialog.show({
+				controller: 'UpdateUserDialog',
+				templateUrl: './templates/dialogs/update_user.html',
+				parent: angular.element(document.body),
+				/* targetEvent: ev, */
+				clickOutsideToClose: true,
+				fullscreen: useFullScreen,
+				locals: {user: angular.copy(user)}
+			})
+				.then(function(result) {
+					// success
+				}, function() {
+					// fail
+				});
+		})
+	}
+	
+	$scope.removeUser = function() {
+		UsersService.removeUser($scope.user)
+			.then(function(res) {
+				if (res.result == "success") {
+					// success
+				} else {
+					// fail
+				}
+			})
+	}
 	
 	$scope.cancel = function() {
 		$mdDialog.cancel();
