@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.factory('UsersService', function($http) {
+app.factory('UsersService', function ($http) {
 	
 	return {
 		
@@ -19,6 +19,13 @@ app.factory('UsersService', function($http) {
 					return res.data;
 				}, function(res) {
 					// failure
+				})
+		},
+		
+		updateUser: function(user) {
+			return $http.post('../inventory-api/update_user.php', user)
+				.then(function(res) {
+					return res.data;
 				})
 		}
 		
@@ -83,21 +90,22 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			});
 	};
 	
-	$scope.showUpdateDialog = function(ev) {
+	$scope.showUpdateDialog = function(user) {
 		var useFullScreen = $mdMedia('xs');
 		$mdDialog.show({
 			controller: 'UpdateUserDialog',
 			templateUrl: './templates/dialogs/update_user.html',
 			parent: angular.element(document.body),
-			targetEvent: ev,
+			/* targetEvent: ev, */
 			clickOutsideToClose: true,
-			fullscreen: useFullScreen
+			fullscreen: useFullScreen,
+			locals: {user: user}
 		})
 			.then(function(result) {
 				// success
 			}, function() {
 				// fail
-			})
+			});
 	};
 	
 	$scope.getUsers();
@@ -126,6 +134,36 @@ app.controller('AddUserDialog', function($rootScope, $scope, $mdDialog, $timeout
 		$scope.newUser = {first_name: '', last_name: '', email: '', is_admin: 0};
 		$scope.newUserForm.$setPristine();
 		$scope.newUserForm.$setUntouched();
+	};
+	
+	$scope.cancel = function() {
+		$mdDialog.cancel();
+	};
+	
+});
+
+app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $timeout, UsersService, user) {
+	
+	$scope.user = user;
+	$scope.og_user = angular.copy(user);
+	
+	$scope.updateUser = function() {
+		UsersService.updateUser($scope.user)
+			.then(function(res) {
+				if (res.result == "success") {
+					
+				} else {
+					$mdDialog.hide('validation-error');
+				}
+			}, function(res) {
+				  $mdDialog.hide('conn-error');
+			})
+	};
+	
+	$scope.resetForm = function() {
+		$scope.user = $scope.og_user;
+		$scope.updateUserForm.$setPristine();
+		$scope.updateUserForm.$setUntouched();
 	};
 	
 	$scope.cancel = function() {
