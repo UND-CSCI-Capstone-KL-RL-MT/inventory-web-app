@@ -177,9 +177,9 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMe
 	
 	$scope.confirmRemove = function(user) {
 		var confirm = $mdDialog.confirm()
-			.title("Are you sure you'd like to delete " + user.first_name + " " + user.last_name + "?")
+			.title("Are you sure you'd like to remove " + user.first_name + " " + user.last_name + " from the system?")
 			.ariaLabel("Really remove user?")
-			.ok('Yes, delete this user')
+			.ok('Yes, remove this user')
 			.cancel('No');
 		
 		$mdDialog.show(confirm).then(function() {
