@@ -60,7 +60,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose: true,
-			/* fullscreen: useFullScreen */
+			fullscreen: useFullScreen
 		})
 			.then(function(result) {
 				if (result == "success") {
@@ -98,7 +98,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			parent: angular.element(document.body),
 			/* targetEvent: ev, */
 			clickOutsideToClose: true,
-			/* fullscreen: useFullScreen, */
+			fullscreen: useFullScreen,
 			locals: {user: angular.copy(user)}
 		})
 			.then(function(result) {
@@ -162,6 +162,7 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $time
 	
 	$scope.resetForm = function() {
 		$scope.user = $scope.og_user;
+		$scope.user.email = $scope.user.username;
 		$scope.updateUserForm.$setPristine();
 		$scope.updateUserForm.$setUntouched();
 	};
