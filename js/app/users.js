@@ -149,7 +149,7 @@ app.controller('AddUserDialog', function($rootScope, $scope, $mdDialog, $timeout
 	
 });
 
-app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMedia, $timeout, UsersService, user, caller) {
+app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMedia, $mdToast, $timeout, UsersService, user, caller) {
 	
 	$scope.user = user;
 	$scope.og_user = angular.copy(user);
