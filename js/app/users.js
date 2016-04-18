@@ -106,7 +106,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 			/* targetEvent: ev, */
 			clickOutsideToClose: true,
 			fullscreen: useFullScreen,
-			locals: {user: angular.copy(user)}
+			locals: {user: angular.copy(user), caller: $scope}
 		})
 			.then(function(result) {
 				// success
@@ -149,7 +149,7 @@ app.controller('AddUserDialog', function($rootScope, $scope, $mdDialog, $timeout
 	
 });
 
-app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMedia, $timeout, UsersService, user) {
+app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMedia, $timeout, UsersService, user, caller) {
 	
 	$scope.user = user;
 	$scope.og_user = angular.copy(user);
@@ -184,6 +184,8 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMe
 		
 		$mdDialog.show(confirm).then(function() {
 			$scope.removeUser(user);
+			$mdDialog.hide();
+			caller.getUsers();
 		}, function() {
 		var useFullScreen = $mdMedia('xs');
 			$mdDialog.show({
@@ -193,7 +195,7 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMe
 				/* targetEvent: ev, */
 				clickOutsideToClose: true,
 				fullscreen: useFullScreen,
-				locals: {user: angular.copy(user)}
+				locals: {user: angular.copy(user), caller: caller}
 			})
 				.then(function(result) {
 					// success
@@ -207,7 +209,12 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMe
 		UsersService.removeUser($scope.user)
 			.then(function(res) {
 				if (res.result == "success") {
-					// success
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent('User was removed from the system successfully.')
+							.position('bottom right')
+							.hideDelay(3000)
+					);
 				} else {
 					// fail
 				}
