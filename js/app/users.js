@@ -161,7 +161,14 @@ app.controller('UpdateUserDialog', function($rootScope, $scope, $mdDialog, $mdMe
 		UsersService.updateUser($scope.user)
 			.then(function(res) {
 				if (res.result == "success") {
-					
+					$mdDialog.hide();
+					caller.getUsers();
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent(res.message)
+							.position('bottom right')
+							.hideDelay(3000)
+					);
 				} else {
 					$mdDialog.hide('validation-error');
 				}
