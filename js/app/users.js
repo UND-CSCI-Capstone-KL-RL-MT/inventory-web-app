@@ -121,6 +121,8 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 
 app.controller('AddUserDialog', function($rootScope, $scope, $mdDialog, $timeout, UsersService) {
 	
+	$scope.newUser = {first_name: '', last_name: '', email: '', is_admin: 0};
+	
 	$scope.addUser = function() {
 		UsersService.addUser($scope.newUser)
 			.then(function(res) {
