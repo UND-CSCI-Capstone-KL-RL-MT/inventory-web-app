@@ -12,7 +12,7 @@ app.factory('InventoryService', function($http) {
 		},
 		
 		filterInventory: function(filter) {
-			return $http.post('../inventory-api/get_items.php', filter)
+			return $http.get('../inventory-api/filter_items.php', {filter: filter})
 				.then(function(res) {
 					return res.data;
 				})
@@ -141,6 +141,13 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 		}, function() {
 			// cancelled removal of item.
 		})
+	};
+	
+	$scope.searchTextChange = function(searchText) {
+		InventoryService.filterInventory(searchText)
+			.then(function(res) {
+				$scope.gridOptions.data = res;
+			})
 	};
 	
 	$scope.getInventory();
