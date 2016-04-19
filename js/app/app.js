@@ -42,4 +42,10 @@ app.config(function($routeProvider) {
 			permissions: 'user'
 		})
 		.otherwise({ redirectTo: '/' });
-})
+});
+
+app.directive('noAnimate', function ($animate) {
+	return function(scope, element) {
+		$animate.enabled(false, element);
+	};
+});
