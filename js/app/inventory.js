@@ -85,7 +85,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				field: 'actions',
 				displayName: 'Actions',
 				enableCellEdit: false,
-				cellTemplate: '<md-button class="md-warn" ng-click="grid.appScope.removeInventory(row.entity)">Delete</md-button><img class="savedIndicator" src="../images/checkmark.png" ng-if="row.entity.saved" />'
+				cellTemplate: '<md-button class="md-warn" ng-click="grid.appScope.removeInventory(row.entity)">Delete</md-button><img class="savedIndicator" src="./images/checkmark.png" ng-if="row.entity.saved" />'
 			}
 		]
 	}
@@ -99,7 +99,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 					rowEntity.saved = true;
 					$timeout(function() {
 						rowEntity.saved = false;
-					}, 500);
+					}, 2000);
 				});
 		});
 	};
