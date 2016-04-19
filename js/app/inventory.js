@@ -85,7 +85,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				field: 'actions',
 				displayName: 'Actions',
 				enableCellEdit: false,
-				cellTemplate: '<md-button class="md-warn">Delete</md-button>'
+				cellTemplate: '<md-button class="md-warn" ng-click="removeInventory(MODEL_COL_FIELD)">Delete</md-button>'
 			}
 		]
 	}
