@@ -321,11 +321,42 @@ md-dialog button.md-button {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }
+  .inventoryGrid .ui-grid-menu {
+    padding: 0;
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }
   .inventoryGrid .ui-grid-menu-button {
     background-color: transparent;
     border: none;
     width: 58px;
     height: 58px; }
+    .inventoryGrid .ui-grid-menu-button .ui-grid-menu .ui-grid-menu-mid {
+      overflow: hidden; }
+    .inventoryGrid .ui-grid-menu-button .ui-grid-menu-inner {
+      background: #FFFFFF;
+      border: none; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-menu-inner ul li > button {
+        -webkit-transition: all 200ms ease-in-out;
+        -moz-transition: all 200ms ease-in-out;
+        -ms-transition: all 200ms ease-in-out;
+        -o-transition: all 200ms ease-in-out;
+        transition: all 200ms ease-in-out; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-menu-inner ul li:not(:last-child) > button {
+        border-bottom: none; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-menu-inner ul li button:hover, .inventoryGrid .ui-grid-menu-button .ui-grid-menu-inner ul li button:focus {
+        background-color: #E0E0E0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-menu-inner .ui-grid-menu-close-button {
+        display: none; }
+    .inventoryGrid .ui-grid-menu-button .ui-grid-menu-item {
+      padding: 15px;
+      font-family: "Roboto", sans-serif;
+      font-size: 12px; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-menu-item:focus {
+        outline: none; }
     .inventoryGrid .ui-grid-menu-button .ui-grid-icon-container {
       margin: 0;
       width: 100%;
@@ -337,7 +368,7 @@ md-dialog button.md-button {
         display: block;
         width: 14px;
         height: 2px;
-        background-color: #FFFFFF;
+        background-color: #E8EAF6;
         content: '';
         position: absolute;
         top: 0;
@@ -350,7 +381,7 @@ md-dialog button.md-button {
           display: block;
           width: 14px;
           height: 2px;
-          background-color: #FFFFFF;
+          background-color: #E8EAF6;
           content: '';
           top: -5px;
           left: -3px; }
@@ -359,7 +390,7 @@ md-dialog button.md-button {
           display: block;
           width: 14px;
           height: 2px;
-          background-color: #FFFFFF;
+          background-color: #E8EAF6;
           content: '';
           top: 5px;
           left: 0; }
@@ -368,7 +399,7 @@ md-dialog button.md-button {
     .inventoryGrid .ui-grid-header .ui-grid-header-canvas {
       background-color: #3F51B5;
       font-family: "Roboto", sans-serif;
-      color: #FFFFFF; }
+      color: #E8EAF6; }
       .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell {
         padding: 15px;
         border-right: none;
