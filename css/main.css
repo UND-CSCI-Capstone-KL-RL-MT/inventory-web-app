@@ -172,7 +172,7 @@ body, html {
     width: 250px;
     height: 100%;
     position: fixed;
-    z-index: 49;
+    z-index: 50;
     top: 0;
     left: 0;
     padding: 20px;
@@ -244,7 +244,7 @@ body, html {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 50;
+    z-index: 49;
     display: none;
     width: 100%;
     height: 100%;
@@ -311,5 +311,85 @@ md-dialog .form {
 md-dialog button.md-button {
   font-size: 12px;
   font-weight: 700; }
+
+.inventoryGrid {
+  border: none;
+  margin-top: 25px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12); }
+  .inventoryGrid .ui-grid-menu-button {
+    background-color: transparent;
+    border: none;
+    width: 58px;
+    height: 58px; }
+    .inventoryGrid .ui-grid-menu-button .ui-grid-icon-container {
+      margin: 0;
+      width: 100%;
+      height: 100%; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-icon-container:focus {
+        outline: none; }
+      .inventoryGrid .ui-grid-menu-button .ui-grid-icon-container i.ui-grid-icon-menu {
+        color: transparent;
+        display: block;
+        width: 14px;
+        height: 2px;
+        background-color: #FFFFFF;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto; }
+        .inventoryGrid .ui-grid-menu-button .ui-grid-icon-container i.ui-grid-icon-menu:before {
+          position: absolute;
+          display: block;
+          width: 14px;
+          height: 2px;
+          background-color: #FFFFFF;
+          content: '';
+          top: -5px;
+          left: -3px; }
+        .inventoryGrid .ui-grid-menu-button .ui-grid-icon-container i.ui-grid-icon-menu:after {
+          position: absolute;
+          display: block;
+          width: 14px;
+          height: 2px;
+          background-color: #FFFFFF;
+          content: '';
+          top: 5px;
+          left: 0; }
+  .inventoryGrid .ui-grid-header {
+    border-bottom: none; }
+    .inventoryGrid .ui-grid-header .ui-grid-header-canvas {
+      background-color: #3F51B5;
+      font-family: "Roboto", sans-serif;
+      color: #FFFFFF; }
+      .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell {
+        padding: 15px;
+        border-right: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box; }
+        .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell .ui-grid-column-menu-button {
+          display: none; }
+        .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell:last-child .ui-grid-column-resizer.right {
+          border-right: none; }
+        .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell .ui-grid-cell-contents {
+          padding: 5px; }
+          .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell .ui-grid-cell-contents:focus {
+            outline: none; }
+  .inventoryGrid .ui-grid-canvas .ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background-color: #FFFFFF; }
+  .inventoryGrid .ui-grid-canvas .ui-grid-row:nth-child(even) .ui-grid-cell {
+    background-color: #F5F5F5; }
+  .inventoryGrid .ui-grid-canvas .ui-grid-cell {
+    border: none; }
+    .inventoryGrid .ui-grid-canvas .ui-grid-cell .ui-grid-cell-contents {
+      padding: 18px; }
 
 /*# sourceMappingURL=main.css.map */

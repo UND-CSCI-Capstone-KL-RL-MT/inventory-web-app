@@ -73,7 +73,7 @@ app.controller('Users', function($rootScope, $scope, $mdToast, $mdMedia, $mdDial
 				if (result == "success") {
 					$mdToast.show(
 						$mdToast.simple()
-							.textContent('User was added to the system.')
+							.textContent('User was added to the system and notified.')
 							.position('bottom right')
 							.hideDelay(3000)
 					);
