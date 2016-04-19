@@ -420,6 +420,17 @@ md-dialog button.md-button {
     background-color: #F5F5F5; }
   .inventoryGrid .ui-grid-canvas .ui-grid-cell {
     border: none; }
+    .inventoryGrid .ui-grid-canvas .ui-grid-cell .md-grid-input-form {
+      padding: 0 15px 0 15px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box; }
+      .inventoryGrid .ui-grid-canvas .ui-grid-cell .md-grid-input-form .md-grid-input {
+        margin-top: 16px; }
+      .inventoryGrid .ui-grid-canvas .ui-grid-cell .md-grid-input-form input.ng-valid {
+        border-left: none;
+        border-right: none;
+        border-top: none; }
     .inventoryGrid .ui-grid-canvas .ui-grid-cell .ui-grid-cell-contents {
       padding: 18px; }
 

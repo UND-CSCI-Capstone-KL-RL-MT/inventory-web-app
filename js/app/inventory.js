@@ -9,6 +9,13 @@ app.factory('InventoryService', function($http) {
 				.then(function(res) {
 					return res.data;
 				})
+		},
+		
+		updateInventory: function(item) {
+			return $http.post('../inventory-api/update_item.php')
+				.then(function(res) {
+					return res.data;
+				})
 		}
 		
 	}
@@ -37,7 +44,8 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				name: 'item_id',
 				field: 'item_id',
 				displayName: 'ID',
-				enableCellEdit: false,
+				enableCellEdit: true,
+				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
 			},
 			{
@@ -45,7 +53,8 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				field: 'item_description',
 				displayName: 'Description',
 				sort: { direction: uiGridConstants.ASC, priority: 1 },
-				enableCellEdit: false,
+				enableCellEdit: true,
+				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
 			},
 			{
@@ -59,11 +68,26 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				name: 'item_location',
 				field: 'item_location',
 				displayName: 'Room',
-				enableCellEdit: false,
+				enableCellEdit: true,
+				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
 			}
 		]
 	}
+	
+	$scope.gridOptions.onRegisterApi = function(gridApi) {
+		$scope.gridApi = gridApi;
+		gridApi.edit.on.afterCellEdit($scope, function(rowEntity, newValue, oldValue) {
+			rowEntity.saved = false;
+			InventoryService.updateInventory(rowEntity)
+				.then(function() {
+					rowEntity.saved = true;
+					$timeout(function() {
+						rowEntity.saved = false;
+					}, 500);
+				});
+		});
+	};
 	
 	$scope.getInventory = function() {
 		InventoryService.getInventory()
