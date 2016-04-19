@@ -284,6 +284,8 @@ body, html {
       .container .appContent .form .width-100 {
         display: block;
         width: 96%; }
+    .container .appContent .inventory-search {
+      margin-top: 15px; }
     .container .appContent h1 {
       font-family: "Roboto", sans-serif;
       font-size: 24px;

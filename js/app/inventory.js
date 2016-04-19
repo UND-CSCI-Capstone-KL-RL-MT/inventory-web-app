@@ -11,6 +11,13 @@ app.factory('InventoryService', function($http) {
 				})
 		},
 		
+		filterInventory: function(filter) {
+			return $http.post('../inventory-api/get_items.php', filter)
+				.then(function(res) {
+					return res.data;
+				})
+		},
+		
 		updateInventory: function(item) {
 			return $http.post('../inventory-api/update_item.php', item)
 				.then(function(res) {
@@ -31,6 +38,7 @@ app.factory('InventoryService', function($http) {
 
 app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $timeout, uiGridConstants, InventoryService) {
 	
+	$scope.inventory = [{"item_id":"M127711","item_description":"Dell Monitor","item_building":"Streibel","item_location":115}];
 	$scope.grid = true;
 	$scope.gridOptions = {
 		enableHorizontalScrollbar: 0,
