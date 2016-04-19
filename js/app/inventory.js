@@ -18,6 +18,13 @@ app.factory('InventoryService', function($http) {
 				})
 		},
 		
+		addInventory: function(item) {
+			return $http.post('../inventory-api/add_item.php', item)
+				.then(function(res) {
+					return res.data;
+				})
+		},
+		
 		updateInventory: function(item) {
 			return $http.post('../inventory-api/update_item.php', item)
 				.then(function(res) {
@@ -61,6 +68,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				field: 'item_id',
 				displayName: 'ID',
 				enableCellEdit: true,
+				cellTemplate: './templates/grid/cell_template.html',
 				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
 			},
@@ -70,6 +78,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				displayName: 'Description',
 				sort: { direction: uiGridConstants.ASC, priority: 1 },
 				enableCellEdit: true,
+				cellTemplate: './templates/grid/cell_template.html',
 				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
 			},
@@ -85,6 +94,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				field: 'item_location',
 				displayName: 'Room',
 				enableCellEdit: true,
+				cellTemplate: './templates/grid/cell_template.html',
 				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
 			},
@@ -101,14 +111,35 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 	$scope.gridOptions.onRegisterApi = function(gridApi) {
 		$scope.gridApi = gridApi;
 		gridApi.edit.on.afterCellEdit($scope, function(rowEntity, newValue, oldValue) {
-			rowEntity.saved = false;
-			InventoryService.updateInventory(rowEntity)
-				.then(function() {
-					rowEntity.saved = true;
-					$timeout(function() {
-						rowEntity.saved = false;
-					}, 2000);
-				});
+			if (rowEntity.unsaved == true) {
+				if (rowEntity.item_id == "" || rowEntity.item_description == "") {
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent('Please enter an item ID and item description to save this item.')
+							.position('bottom right')
+							.hideDelay(3000)
+					);
+				} else {
+					rowEntity.saved = false;
+					InventoryService.addInventory(rowEntity)
+						.then(function() {
+							rowEntity.unsaved = false;
+							rowEntity.saved = true;
+							$timeout(function() {
+								rowEntity.saved = false;
+							}, 2000);
+						});
+				}
+			} else {
+				rowEntity.saved = false;
+				InventoryService.updateInventory(rowEntity)
+					.then(function() {
+						rowEntity.saved = true;
+						$timeout(function() {
+							rowEntity.saved = false;
+						}, 2000);
+					});
+			}
 		});
 	};
 	
@@ -118,6 +149,10 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				$scope.gridOptions.data = res;
 			});
 	};
+	
+	$scope.addItem = function() {
+		$scope.gridOptions.data.push({item_id: '', item_description: '', item_building: 'Streibel Hall', item_location: '', saved: false, unsaved: true})
+	}
 	
 	$scope.removeInventory = function(item) {
 		

@@ -298,6 +298,13 @@ body, html {
           margin-bottom: 20px; } }
       .container .appContent h1.section-heading {
         margin-top: 35px; }
+    .container .appContent .add-item {
+      float: right;
+      margin-top: 15px; }
+      .container .appContent .add-item:after {
+        display: block;
+        content: '';
+        clear: both; }
 
 md-dialog md-input-container {
   margin-bottom: 0; }
@@ -446,5 +453,7 @@ md-dialog button.md-button {
         border-top: none; }
     .inventoryGrid .ui-grid-canvas .ui-grid-cell .ui-grid-cell-contents {
       padding: 18px; }
+      .inventoryGrid .ui-grid-canvas .ui-grid-cell .ui-grid-cell-contents.placeholder {
+        color: #9E9E9E; }
 
 /*# sourceMappingURL=main.css.map */
