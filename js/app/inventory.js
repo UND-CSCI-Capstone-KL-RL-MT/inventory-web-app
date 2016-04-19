@@ -12,7 +12,7 @@ app.factory('InventoryService', function($http) {
 		},
 		
 		filterInventory: function(filter) {
-			return $http.get('../inventory-api/filter_items.php', {filter: filter})
+			return $http.get('../inventory-api/get_items.php', {filter: filter})
 				.then(function(res) {
 					return res.data;
 				})
