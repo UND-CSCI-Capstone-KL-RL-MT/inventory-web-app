@@ -112,16 +112,27 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 	};
 	
 	$scope.removeInventory = function(item) {
-		InventoryService.removeInventory(item)
-			.then(function(res) {
-				$scope.getInventory();
-				$mdToast.show(
-					$mdToast.simple()
-						.textContent('Item with ID ' + item.item_id + ' removed successfully.')
-						.position('bottom right')
-						.hideDelay(3000)
-				);
-			});
+		
+		var confirm = $mdDialog.confirm()
+			.title("Are you sure you'd like to remove item " + item.item_id + "?")
+			.ariaLabel("Really remove item?")
+			.ok('Yes')
+			.cancel('No');
+		
+		$mdDialog.show(confirm).then(function() {
+			InventoryService.removeInventory(item)
+				.then(function(res) {
+					$scope.getInventory();
+					$mdToast.show(
+						$mdToast.simple()
+							.textContent('Item with ID ' + item.item_id + ' removed successfully.')
+							.position('bottom right')
+							.hideDelay(3000)
+					);
+				});
+		}, function() {
+			// cancelled removal of item.
+		})
 	};
 	
 	$scope.getInventory();
