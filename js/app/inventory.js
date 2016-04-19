@@ -16,6 +16,13 @@ app.factory('InventoryService', function($http) {
 				.then(function(res) {
 					return res.data;
 				})
+		},
+		
+		removeInventory: function(item) {
+			return $http.post('../inventory-api/remove_item.php', item)
+				.then(function(res) {
+					return res.data;
+				})
 		}
 		
 	}
@@ -34,6 +41,7 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 		exporterCsvFilename: 'inventory-report-' + moment().format('MM-DD-YYYY') + '.csv',
 		exporterCsvLinkElement: angular.element(document.querySelectorAll('.custom-csv-link')),
 		exporterMenuPdf: false,
+		exporterSuppressColumns: ['actions'],
 		onRegisterApi: function(gridApi) {
 			$scope.gridApi = gridApi;
 		},
@@ -71,6 +79,13 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 				enableCellEdit: true,
 				editableCellTemplate: '<form name="inputForm" class="md-grid-input-form"><md-input-container class="md-grid-input"><label>{{ col.displayName }}</label><input type="INPUT_TYPE" ui-grid-editor ng-model="MODEL_COL_FIELD" autocomplete="off"></md-input-container></form>',
 				enableColumnResizing: true
+			},
+			{
+				name: 'actions',
+				field: 'actions',
+				displayName: 'Actions',
+				enableCellEdit: false,
+				cellTemplate: '<md-button class="md-warn">Delete</md-button>'
 			}
 		]
 	}
@@ -94,7 +109,20 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 			.then(function(res) {
 				$scope.gridOptions.data = res;
 			});
-	}
+	};
+	
+	$scope.removeInventory = function(item) {
+		InventoryService.removeInventory(item)
+			.then(function(res) {
+				$scope.getInventory();
+				$mdToast.show(
+					$mdToast.simple()
+						.textContent('Item with ID ' + item.item_id + ' removed successfully.')
+						.position('bottom right')
+						.hideDelay(3000)
+				);
+			});
+	};
 	
 	$scope.getInventory();
 	

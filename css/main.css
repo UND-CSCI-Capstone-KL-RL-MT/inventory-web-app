@@ -414,6 +414,11 @@ md-dialog button.md-button {
           padding: 5px; }
           .inventoryGrid .ui-grid-header .ui-grid-header-canvas .ui-grid-header-cell .ui-grid-cell-contents:focus {
             outline: none; }
+  .inventoryGrid .ui-grid-canvas .md-button {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 7px; }
   .inventoryGrid .ui-grid-canvas .ui-grid-row:nth-child(odd) .ui-grid-cell {
     background-color: #FFFFFF; }
   .inventoryGrid .ui-grid-canvas .ui-grid-row:nth-child(even) .ui-grid-cell {
