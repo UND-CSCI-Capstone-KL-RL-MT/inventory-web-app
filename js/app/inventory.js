@@ -12,7 +12,7 @@ app.factory('InventoryService', function($http) {
 		},
 		
 		updateInventory: function(item) {
-			return $http.post('../inventory-api/update_item.php')
+			return $http.post('../inventory-api/update_item.php', item)
 				.then(function(res) {
 					return res.data;
 				})
