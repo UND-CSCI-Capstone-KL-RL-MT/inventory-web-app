@@ -23,4 +23,13 @@ $( document ).ready(function() {
 			$("nav, #navMask").addClass("open");
 		}
 	});
+	
+	$('.nav-link').click(function() {
+		if (menuOpen) {
+			menuOpen = false;
+			$("#menu").removeClass("click");
+			$("nav, #navMask").removeClass("open");
+		}
+	});
+	
 });
