@@ -9,11 +9,43 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.1.0/ui-grid.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.14.2/select.min.css" />
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/main.css" />
 	
 </head>
 <body>
-	<div class="container">
+	<div class="login" ng-show="!$root.user.logged">
+		<div class="login-box">
+			<div id="login-und-logo"></div>
+			<div class="left-login">
+				<form name="loginForm">
+				<h1>Log in</h1>
+					<md-input-container class="width-100">
+						<label>Email address</label>
+						<input required name="username" maxlength="255" autocomplete="off" spellcheck="false" ng-model="$root.user.username" ng-pattern="/^.+@.+\..+$/" />
+						<div ng-messages="loginForm.username.$error" role="alert">
+							<div ng-message="maxlength">Please enter a valid email address.</div>
+							<div ng-message="required">A first name is required.</div>
+							<div ng-message="pattern">Please log in using your email address.</div>
+						</div>
+					</md-input-container>
+					<md-input-container class="width-100 password">
+						<label>Password</label>
+						<input required name="password" type="password" ng-model="$root.user.password" />
+					</md-input-container>
+					<md-button class="md-primary md-raised" ng-click="loginForm.$valid && loginUser()">Log In</md-button>
+				</form>
+			</div>
+			<div class="right-login">
+				<h3>Forgot your password?</h3>
+				<a href="#">Reset your password here.</a>
+				
+				<h3 class="lower">Need access?</h3>
+				<a href="#">Request access here.</a>
+			</div>
+		</div>
+	</div>
+	<div class="container" ng-show="$root.user.logged">
 		<div class="content">
 			<header>
 				<button id="menu"><span></span></button>
