@@ -14,7 +14,7 @@
 	
 </head>
 <body>
-	<div class="login" ng-show="!$root.user.logged">
+	<div class="login" ng-show="!$root.user.logged" ng-controller="Login">
 		<div class="login-box">
 			<div id="login-und-logo"></div>
 			<div class="left-login">
@@ -33,7 +33,7 @@
 						<label>Password</label>
 						<input required name="password" type="password" ng-model="$root.user.password" />
 					</md-input-container>
-					<md-button class="md-primary md-raised" ng-click="loginForm.$valid && loginUser()">Log In</md-button>
+					<md-button class="md-primary md-raised" ng-click="loginForm.$valid && login($root.user)">Log In</md-button>
 				</form>
 			</div>
 			<div class="right-login">
@@ -85,6 +85,7 @@
 	<!-- Local scripts -->
 	<script src="js/uiHandlers.js"></script>
 	<script src="js/app/app.js"></script>
+	<script src="js/app/login.js"></script>
 	<script src="js/app/home.js"></script>
 	<script src="js/app/users.js"></script>
 	<script src="js/app/inventory.js"></script>
