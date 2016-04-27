@@ -15,7 +15,7 @@ app.factory('AuthService', function($http) {
 	
 });
 
-app.controller('Login', function($rootScope, $scope, $timeout, AuthService) {
+app.controller('Login', function($rootScope, $scope, $timeout, AuthService, localStorageService) {
 
 	$scope.login = function(user) {
 		AuthService.login(user)
@@ -28,6 +28,8 @@ app.controller('Login', function($rootScope, $scope, $timeout, AuthService) {
 					$rootScope.user.last_name = res.message.last_name;
 					$rootScope.user.is_admin = res.message.is_admin;
 					$rootScope.user.logged = true;
+					localStorageService.set("user", $rootScope.user);
+					console.log(localStorageService.get("user"));
 				} else {
 					$rootScope.user = {};
 					$rootScope.user.authMsg = res.message;

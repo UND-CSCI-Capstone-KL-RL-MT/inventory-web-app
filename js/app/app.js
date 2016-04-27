@@ -9,7 +9,8 @@ var app = angular.module('app',
 							'ui.grid.cellNav',
 							'ui.grid.exporter',
 							'ui.grid.importer',
-							'ui.grid.resizeColumns'
+							'ui.grid.resizeColumns',
+							'LocalStorageModule'
 						 ]);
 
 app.config(function($mdThemingProvider) {
@@ -47,5 +48,16 @@ app.config(function($routeProvider) {
 app.directive('noAnimate', function ($animate) {
 	return function(scope, element) {
 		$animate.enabled(false, element);
+	};
+});
+
+app.directive('localView', function(localStorageService, $rootScope) {
+	return function(scope, element) {
+		if (localStorageService.get("user") != null) {
+			console.log(localStorageService.get("user"));
+			console.log(scope.$root.user);
+			scope.$root.user = localStorageService.get("user");
+			console.log(scope.$root.user);
+		}
 	};
 });
