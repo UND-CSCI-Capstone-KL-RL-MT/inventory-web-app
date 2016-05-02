@@ -38,8 +38,8 @@ app.config(function($routeProvider) {
 			permissions: 'user'
 		})
 		.when('/profile', {
-			controller: 'Profile',
-			templateUrl: './templates/profile.html',
+			controller: 'Account',
+			templateUrl: './templates/account.html',
 			permissions: 'user'
 		})
 		.otherwise({ redirectTo: '/' });

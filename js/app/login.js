@@ -27,6 +27,7 @@ app.controller('Login', function($rootScope, $scope, $timeout, AuthService, loca
 					$rootScope.user.first_name = res.message.first_name;
 					$rootScope.user.last_name = res.message.last_name;
 					$rootScope.user.is_admin = res.message.is_admin;
+					$rootScope.user.user_id = res.message.user_id;
 					$rootScope.user.logged = true;
 					localStorageService.set("user", $rootScope.user);
 					console.log(localStorageService.get("user"));
