@@ -1,13 +1,20 @@
 <h1>Manage Inventory</h1>
 <p>Use the table below to manage inventory within the system. You can sort items, delete items, and update their information from within the table. Use the search box at the top to search for a specific item, or to filter items down in the table.</p>
 
-<md-autocomplete class="inventory-search" md-selected-item="search.selectedItem" md-search-text="search.searchText" md-search-text-change="searchTextChange(search.searchText)" md-selected-item-change="searchTextChange(search.selectedItem.name)" md-no-cache="true" md-items="item in gridOptions.data | filter: search.searchText" md-item-text="item.item_description" placeholder="Search for item by description...">
+<md-autocomplete class="inventory-search" md-selected-item="search.selectedItem" md-search-text="search.searchText" md-search-text-change="searchTextChange(search.filterBy, search.searchText)" md-selected-item-change="searchTextChange(search.selectedItem.name)" md-no-cache="true" md-items="item in gridOptions.data | filter: search.searchText" md-item-text="item.item_description" placeholder="Search for item by {{search.filterBy}}...">
 	<md-item-template>
 		<span class="item-title">
 			<span> {{item.item_description}} </span>
 		</span>
 	</md-item-template>
 </md-autocomplete>
+<span class="radio-group-label">Filter by:</span>
+<md-radio-group ng-model="search.filterBy">
+	<md-radio-button value="all">All</md-radio-button>
+	<md-radio-button value="description">Description</md-radio-button>
+	<md-radio-button value="id">Item ID</md-radio-button>
+	<md-radio-button value="room">Room Number</md-radio-button>
+</md-radio-group>
 
 <div ui-grid="gridOptions" ui-grid-edit ui-grid-exporter ui-grid-importer ui-grid-resize-columns class="inventoryGrid"></div>
 <md-button class="md-primary md-raised add-item" ng-click="addItem()">Add Item</md-button>

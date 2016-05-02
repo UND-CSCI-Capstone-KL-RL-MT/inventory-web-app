@@ -309,6 +309,21 @@ body, html {
 md-dialog md-input-container {
   margin-bottom: 0; }
 
+md-radio-button {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-bottom: 16px;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  margin-right: 27px; }
+
+.radio-group-label {
+  display: inline-block;
+  margin-right: 27px;
+  font-weight: 700;
+}
+
 md-dialog .form {
   margin-top: 15px; }
   md-dialog .form .width-45 {

@@ -11,8 +11,8 @@ app.factory('InventoryService', function($http) {
 				})
 		},
 		
-		filterInventory: function(filter) {
-			return $http.get('../inventory-api/get_items.php', { params: {filter: filter}})
+		filterInventory: function(filter, query) {
+			return $http.get('../inventory-api/get_items.php', { params: {filter: filter, query: query}})
 				.then(function(res) {
 					return res.data;
 				})
@@ -45,7 +45,8 @@ app.factory('InventoryService', function($http) {
 
 app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $timeout, uiGridConstants, InventoryService) {
 	
-	$scope.inventory = [{"item_id":"M127711","item_description":"Dell Monitor","item_building":"Streibel","item_location":115}];
+	$scope.search = {};
+	$scope.search.filterBy = "all";
 	$scope.grid = true;
 	$scope.gridOptions = {
 		enableHorizontalScrollbar: 0,
@@ -180,8 +181,8 @@ app.controller('Inventory', function($rootScope, $scope, $mdDialog, $mdToast, $t
 		})
 	};
 	
-	$scope.searchTextChange = function(searchText) {
-		InventoryService.filterInventory(searchText)
+	$scope.searchTextChange = function(filterBy, searchText) {
+		InventoryService.filterInventory(filterBy, searchText)
 			.then(function(res) {
 				$scope.gridOptions.data = res;
 			})
