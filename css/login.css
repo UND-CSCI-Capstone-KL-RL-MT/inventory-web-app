@@ -100,3 +100,7 @@
 			color: #5C6BC0;
 			text-decoration: none;
 		}
+
+		.login-box .right-login a:focus {
+			outline: none;
+		}
