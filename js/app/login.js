@@ -59,4 +59,8 @@ app.controller('Login', function($rootScope, $scope, $timeout, AuthService, loca
 			});
 	};
 	
+	$scope.showForgotPasswordDialog = function() {
+		
+	};
+	
 });
