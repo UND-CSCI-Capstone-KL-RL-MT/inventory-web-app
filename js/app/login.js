@@ -17,6 +17,13 @@ app.factory('AuthService', function($http) {
 				.then(function(res) {
 					return res.data;
 				})
+		},
+
+		resetPassword: function(email) {
+			return $http.post('../inventory-api/reset_password.php', {email: email})
+				.then(function(res) {
+					return res.data;
+				})
 		}
 		
 	}
@@ -77,7 +84,7 @@ app.controller('Login', function($rootScope, $scope, $timeout, $mdDialog, $mdMed
 				if (result == "success") {
 					$mdToast.show(
 						$mdToast.simple()
-							.textContent('Your new password was sent to your email address.')
+							.textContent('Your password was reset successfully. Please check your email.')
 							.position('bottom right')
 							.hideDelay(3000)
 					);
@@ -86,7 +93,7 @@ app.controller('Login', function($rootScope, $scope, $timeout, $mdDialog, $mdMed
 				} else if (result == "conn-error") {
 					$mdToast.show(
 						$mdToast.simple()
-							.textContent('Could not update your password. Please refresh and try again.')
+							.textContent('Your password was unable to be reset. Please refresh and try again.')
 							.position('bottom right')
 							.hideDelay(3000)
 					);
@@ -105,8 +112,30 @@ app.controller('Login', function($rootScope, $scope, $timeout, $mdDialog, $mdMed
 	
 });
 
-app.controller('ForgotPasswordDialog', function($rootScope, $scope, $timeout, $mdDialog, AuthService, localStorageService) {
+app.controller('ForgotPasswordDialog', function($rootScope, $scope, $timeout, $mdDialog, $mdToast, AuthService, localStorageService) {
 	
+	$scope.email = "";
+
+	/**
+	 * The resetPassword function resets the password for the user with
+	 * the specified email address.
+	 */
+	$scope.resetPassword = function() {
+		AuthService.resetPassword($scope.email)
+			.then(function(result) {
+				$scope.email = "";
+				$scope.forgotPassForm.$setPristine();
+				$scope.forgotPassForm.$setUntouched();
+				$mdDialog.hide('success');
+				console.log("Password reset!");
+			}, function() {
+				$scope.email = "";
+				$scope.forgotPassForm.$setPristine();
+				$scope.forgotPassForm.$setUntouched();
+				$mdDialog.hide('conn-error');
+			});
+	};
+
 	/**
 	 * The cancel function cancels and closes the dialog
 	 */
